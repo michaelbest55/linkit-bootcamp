@@ -1,10 +1,10 @@
-# Data Engineering traineeship assessment
+# Data Engineering bootcamp assessment
 
 The goal of this test is to asses yourself and open a path to a clear and concise technical interview.
 
 Remember, you already went through our screening and first interview; this is the beginning and preparation for a mutual technical conversation.
 
-We do not expect you to know any of these tools here. But all of them are widely used and have a large variety of information all over the internet, so it's not an extremely complex job. The traineeship will start with an intense bootcamp for 2 months and being able to find your way around the tools from day 0 is very important ability, thus this assessment.
+We do not expect you to know any of these tools here. But all of them are widely used and have a large variety of information all over the internet, so it's not an extremely complex job. The 8 weeks for the bootcamp will be very intensive, so being able to find your way around new concepts/tech/tools from day 0 is very important ability, thus this assessment.
 
 ## Hortonworks Data Platform Sandbox
 
@@ -19,7 +19,7 @@ Explain you steps and impression in `MyExperience.md`.
 
 ### Basic HDFS & Hive
 
-Build a Scala application using Spark (you must use [sbt](https://www.scala-sbt.org/) as a build tool) and execute against the Sandbox Hive & SPark to do the following:
+Build a Scala application using Spark (you must use [sbt](https://www.scala-sbt.org/) as a build tool) and execute against the Sandbox Hive & Spark to do the following:
 - upload the `.csv` files on <a href="data-spark/">`data-spark`</a> to HDFS
 - create tables on Hive for each `.csv` file
 - output a dataframe on Spark that contains `DRIVERID, NAME, HOURS_LOGGED, MILES_LOGGED` so you can have aggregated information about the driver.
@@ -37,8 +37,10 @@ Extend the Scala application above so that it can:
 
 Same thing here, besides the code on a repo, explain you steps and impression in <a href="`MyExperience.md">`MyExperience.md`</a>.
 
-## Show off and get extra-points
-If you use Docker version of the HDP Sandbox and/or if you use Docker for your Scala application.
+## Extra
+
+- Deliver a containerized Scala app
+- Write at least 2 Unit Tests before building the Scala app
 
 ## Doubts &/Or Submission
 
