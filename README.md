@@ -6,12 +6,16 @@ Remember, you already went through our screening and first interview; this is th
 
 We do not expect you to know any of these tools here. But all of them are widely used and have a large variety of information all over the internet, so it's not an extremely complex job. The 8 weeks for the bootcamp will be very intensive, so being able to find your way around new concepts/tech/tools from day 0 is very important ability, thus this assessment.
 
+> Again, we do not expect you to do it all. We want to evaluate how you learn, apply and explain new technologies.
+
 ## Hortonworks Data Platform Sandbox
 
 Download the latest HDP sandbox and run locally following the instructions [here](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox/) to learn how to setup and everything.
 Do the first tutorial [Learning the Ropes of the HDP Sandbox](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
 
 > This was tested running on a macbook with 16GB of RAM. Check your memory usage or deploy in the cloud if you need more. I recommend allocating at least 8GB for this `vbox`.
+
+> It doesn't work on your laptop and you can't work in the cloud? Then you will have to setup Spark, HDFS, Hive and HBase locally as binaries or in a Docker container.
 
 Explain you steps and impression in `MyExperience.md`.
 
