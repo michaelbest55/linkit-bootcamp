@@ -1,0 +1,3 @@
+basic_hdfs/project/*
+basic_hdfs/spark-warehouse/*
+basic_hdfs/target/*

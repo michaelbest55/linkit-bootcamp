@@ -1,0 +1,76 @@
+Ok, so first I had to get a AWS instance going. After connecting to the instance, I tried running the deployment script for the sandbox environment, which basically setsup some docker images on which then we work in. I ran into the error: "cgroups: cannot found cgroup mount destination: unknown". Cgroups are a kernel feature that isolate resources for a hierearchy of processes. As far as I could tell, this is used in containers a lot, with several people having documented the error in docker 18. See these links for an example:
+https://github.com/docker/for-linux/issues/219
+I tried the following commands:
+sudo mkdir /sys/fs/cgroup/systemd
+sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
+
+But got the following error: start returned error: unable to find \"systemd\" in controller set: unknown"
+In https://github.com/docker/for-linux/issues/469#issuecomment-437361309, they suggest doing the following rm -fr /sys/fs/cgroup
+
+https://github.com/DataDog/docker-dd-agent/issues/7
+From the bit that I understood, normally cgroups are found in /sys/fs/cgroup.
+In my aws instance however they were all found in /cgroup/. I tried changing the docker_deploy setup script for the Sandbox, however after serveral different version of this, I couldn't really get it to work.
+
+
+People were saying they could fix this problem by using docker version 17.09.1, which is not available in the amazon image, so i ended up making a new instance with ubuntu 18.04 on it. 
+
+The deployment script finally worked after changing
+[ hdp == hdf ]
+docker-deploy-hdp30.sh: 28: [: hdp: unexpected operator
+
+to [ hdp = hdf ]
+
+
+The next step was to connect to the Sandbox. In order to get a gui I connected to the server with ssh -XC. 
+I explored the dashboard a bit and then decided to try to get the first assignment finished. 
+I installed sbt with sdkman
+ 
+$ sdk list java
+$ sdk install java 11.0.4.hs-adpt
+$ sdk install sbt
+
+I followed the following style guide
+https://github.com/databricks/scala-style-guide#indent
+
+
+
+val df = spark.read.format("csv").option("header","true").load("my_files/data-spark/drivers.csv")
+val df2 = spark.read.format("csv").option("header","true").load("my_files/data-spark/timesheet.csv")
+val df3 = spark.read.format("csv").option("header","true").load("my_files/data-spark/truck_event_text_partition.csv")
+df.createOrReplaceTempView("driversTempTable")
+spark.sqlContext.sql("create table driversTable as select * from driversTempTable")
+df2.createOrReplaceTempView("timesheetTempTable")
+spark.sqlContext.sql("create table timesheetTable as select * from timesheetTempTable")
+spark.sqlContext.sql("create table truckEventTable as select * from truckEventTempTable")
+df3.createOrReplaceTempView("truckeventTempTable")
+spark.sql("SELECT timeSheetTable.driverId, name, `hours-logged`, `miles-logged`  FROM timeSheetTable JOIN driversTable WHERE driversTable.driverId=timeSheetTable.driverId").show()
+
+Hive Session ID = 0f2192c5-d23f-4ed9-8964-aaa077467b05
++--------+-----------------+------------+------------+                          
+|driverId|             name|hours-logged|miles-logged|
++--------+-----------------+------------+------------+
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          60|        2800|
+|      10|George Vetticaden|          70|        3100|
+|      10|George Vetticaden|          70|        3200|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3000|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3200|
+|      10|George Vetticaden|          50|        2500|
+|      10|George Vetticaden|          70|        2900|
+|      10|George Vetticaden|          70|        3100|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3400|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          70|        3300|
+|      10|George Vetticaden|          30|        1200|
++--------+-----------------+------------+------------+
+only showing top 20 rows
+
+
+org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns='HBASE_ROW_KEY,eventId,driverId,driverName,eventTime,eventType,latitudeColumn,longitudeColumn,routeId,routeName,truckId' emp_data /user/bdp/hbase/data/emp_data.csv
