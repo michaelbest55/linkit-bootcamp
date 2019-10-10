@@ -1,7 +1,6 @@
-#My experience and further notes
+## My experience and further notes
 
-Put here general information about the steps you took, what you liked, disliked, why did you do X instead of Y and so on.
-Hello! My name is Michael Best. Thanks for taking the time to read through my thoughts on the exercise! 
+Hello! My name is Michael Best. Thanks for taking the time to read through my thoughts on the exercise! I have to admit that I ran into a lot of small prblems that ended up taking a lot longer time to fix than I would've liked, so sorry if it is quite incomplete.
 
 Before I took any steps towards working in the sandbox, I took the opportunity to set up a cloud environment. I had never done so, so I figured this was a good opportunity, not to mention that I have a small old Lenovo laptop which desperately needs some more RAM memory :)
 
