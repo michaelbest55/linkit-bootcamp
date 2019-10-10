@@ -43,7 +43,6 @@ After googling for a while I could not figure out what the olution to this was.
 To be honest I've run out of time in order to try and solve this using a scala app. The best I can offer is a poor attempt to make things work using the HBase shell line, where the commands used can be found in the last section.
 From the bit of digging around I managed to do, I saw that HortonWorks has an API to go from spark to HBase, https://github.com/hortonworks-spark/shc. 
 
-I had some time issues
 
 
 ## Spark commands in shell
