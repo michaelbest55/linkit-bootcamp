@@ -59,13 +59,10 @@ spark.sqlContext.sql("create table truckEventTable as select * from truckEventTe
 # Join hive tables
 spark.sql("SELECT timeSheetTable.driverId, name, `hours-logged`, `miles-logged`  FROM timeSheetTable JOIN driversTable WHERE driversTable.driverId=timeSheetTable.driverId").show()
 ```
-# Resulting table
-
-
-Hive Session ID = 0f2192c5-d23f-4ed9-8964-aaa077467b05
-+--------+-----------------+------------+------------+                          
-|driverId|             name|hours-logged|miles-logged|
-+--------+-----------------+------------+------------+
+# Resulting top 20 rows in table
+                    
+|driverId|name|hours-logged|miles-logged|
+| --- | --- | --- | --- |
 |      10|George Vetticaden|          70|        3300|
 |      10|George Vetticaden|          70|        3300|
 |      10|George Vetticaden|          60|        2800|
@@ -86,8 +83,6 @@ Hive Session ID = 0f2192c5-d23f-4ed9-8964-aaa077467b05
 |      10|George Vetticaden|          70|        3300|
 |      10|George Vetticaden|          70|        3300|
 |      10|George Vetticaden|          30|        1200|
-+--------+-----------------+------------+------------+
-only showing top 20 rows
 
 
 
